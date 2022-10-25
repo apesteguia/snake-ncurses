@@ -15,9 +15,9 @@ void iniciarVentana(WINDOW *win) {
     bool b = true;
 
     snake[0] = '*';
-    snake[1] = '*';
-    i = 15;
-    j = 5;
+    
+    i = 25;
+    j = 25;
 
     initscr();
     getmaxyx(stdscr, y, x);
@@ -40,7 +40,7 @@ void iniciarVentana(WINDOW *win) {
     wrefresh(win);
     do
     {
-        d = movimiento(win, c, snake, &i, &j, 2);
+        d = movimiento(win, c, snake, &i, &j, strlen(snake));
         wrefresh(win);
         //c = wgetch(win);
         c = d;
@@ -67,7 +67,7 @@ char movimiento(WINDOW *win, char c, char snake[DIMS], int *h, int *w, int k) {
             mvwprintw(win, j, i+1, snake);
             i = i + 2;
             wrefresh(win);
-            sleep(1);
+            usleep(500000);
             d = wgetch(win);
             if (d == 'f' || d == 'w' || d == 's' || d == 'a') {
                 *h = i;
@@ -88,7 +88,7 @@ char movimiento(WINDOW *win, char c, char snake[DIMS], int *h, int *w, int k) {
             mvwprintw(win,0,11,titulo);
             i = i - 2;
             wrefresh(win);
-            sleep(1);
+            usleep(500000);
             d = wgetch(win);
             if (d == 'f' || d == 'w' || d == 's' || d == 'd') {
                 *h = i;
@@ -113,7 +113,7 @@ char movimiento(WINDOW *win, char c, char snake[DIMS], int *h, int *w, int k) {
             }
             m--;
             wrefresh(win);
-            sleep(1);
+            usleep(900000);
             d = wgetch(win);
             if (d == 'f' || d == 'd' || d == 's' || d == 'a') {
                 *h = i;
@@ -137,7 +137,7 @@ char movimiento(WINDOW *win, char c, char snake[DIMS], int *h, int *w, int k) {
             }
             m++;
             wrefresh(win);
-            sleep(1);
+            usleep(900000);
             d = wgetch(win);
             if (d == 'f' || d == 'w' || d == 'd' || d == 'a') {
                 *h = i;
